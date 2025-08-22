@@ -1,5 +1,6 @@
-from bestie import gpt
 from colorama import init, Fore, Style
+
+from bestie import gpt
 
 
 class Chatbot:

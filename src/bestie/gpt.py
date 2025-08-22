@@ -1,13 +1,15 @@
 import os
 
 from dataclasses import dataclass
-from dotenv import load_dotenv
 from typing import TypeAlias
+
+from dotenv import load_dotenv
 
 from openai import OpenAI
 from openai._streaming import Stream
 from openai.types.chat.chat_completion import ChatCompletion
 from openai.types.chat.chat_completion_chunk import ChatCompletionChunk
+
 
 Response: TypeAlias = ChatCompletion | Stream[ChatCompletionChunk]
 
