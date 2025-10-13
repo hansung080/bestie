@@ -1,6 +1,6 @@
 annotated-types==0.7.0
 anyio==4.10.0
--e git+ssh://git@github.com/hansung080/bestie.git@74f898aecbc8f1f0a92409b44e7391840ed3d60e#egg=bestie
+-e git+ssh://git@github.com/hansung080/bestie.git@f0bf907e2cce91e15c0e1f6bafbe5c436ae4be9e#egg=bestie
 certifi==2025.8.3
 colorama==0.4.6
 distro==1.9.0

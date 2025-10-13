@@ -6,7 +6,7 @@ authors = [
     { name = "Han-Seong Kwon", email = "hansung080@hanmail.net" },
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
     "openai (>=1.99.9,<2.0.0)",
     "python-dotenv (>=1.1.1,<2.0.0)",
