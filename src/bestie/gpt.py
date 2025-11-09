@@ -18,11 +18,11 @@ class Model:
     gpt_4o_mini: str = "gpt-4o-mini-2024-07-18"
 
 
-model = Model()
+model: Model = Model()
 
 load_dotenv()
 
-client = OpenAI(
+client: OpenAI = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
     timeout=30,
     max_retries=1,

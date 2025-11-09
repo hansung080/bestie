@@ -1,12 +1,12 @@
-from colorama import init, Fore, Style
+from colorama import Fore, Style, init as colorama_init
 
 from bestie import gpt
 
 
 class Chatbot:
     def __init__(self, model: str) -> None:
-        self.model = model
-        self.context = [{"role": "system", "content": "You are a helpful assistant."}]
+        self.model: str = model
+        self.context: list[dict[str, str]] = [{"role": "system", "content": "You are a helpful assistant."}]
 
     def add_user_message(self, message: str) -> None:
         self.context.append({"role": "user", "content": message})
@@ -26,7 +26,7 @@ class Chatbot:
 
 
 def run_cli():
-    init(autoreset=True)
+    colorama_init(autoreset=True)
     print(f"Bestie> How can I help you? (Enter `{Fore.GREEN}exit{Style.RESET_ALL}` to quit chatting)")
 
     chatbot = Chatbot(gpt.model.gpt_4o_mini)
