@@ -11,5 +11,5 @@ $ poetry install
 ### Create Configuration File
 Create the `.env` file with the following content in the project root directory.
 ```text
-OPENAI_API_KEY=<openai-api-key>
+BESTIE_OPENAI_API_KEY=<openai-api-key>
 ```

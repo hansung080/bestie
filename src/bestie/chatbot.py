@@ -1,6 +1,10 @@
+from typing import TypeAlias
+
 from colorama import Fore, Style, init as colorama_init
 
 from bestie import gpt
+
+Response: TypeAlias = gpt.Response
 
 
 class Chatbot:
@@ -11,13 +15,13 @@ class Chatbot:
     def add_user_message(self, message: str) -> None:
         self.context.append({"role": "user", "content": message})
 
-    def send_request(self) -> gpt.Response:
+    def send_request(self) -> Response:
         return gpt.client.chat.completions.create(
             model=self.model,
             messages=self.context,
         )
 
-    def add_response(self, response: gpt.Response) -> None:
+    def add_response(self, response: Response) -> None:
         message = response.choices[0].message
         self.context.append({"role": str(message.role), "content": str(message.content)})
 
@@ -29,11 +33,14 @@ def run_cli():
     colorama_init(autoreset=True)
     print(f"Bestie> How can I help you? (Enter `{Fore.GREEN}exit{Style.RESET_ALL}` to quit chatting)")
 
-    chatbot = Chatbot(gpt.model.gpt_4o_mini)
+    chatbot = Chatbot(gpt.model.GPT_4O_MINI)
     while True:
         user_message = input(Fore.BLUE + "User> ")
         print(Style.RESET_ALL, end="")
-        if user_message == "exit":
+        user_message = user_message.strip()
+        if len(user_message) == 0:
+            continue
+        elif user_message == "exit":
             break
 
         chatbot.add_user_message(user_message)
