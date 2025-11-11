@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TypeAlias
 
 from colorama import Fore, Style, init as colorama_init
