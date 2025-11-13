@@ -5,10 +5,18 @@ from typing import TypeAlias
 
 from openai import OpenAI
 from openai._streaming import Stream
-from openai.types.chat.chat_completion import ChatCompletion
-from openai.types.chat.chat_completion_chunk import ChatCompletionChunk
+from openai.types.chat import ChatCompletion, ChatCompletionChunk, ChatCompletionMessageParam
 
 from bestie.env import OPENAI_API_KEY
+
+__all__ = [
+    "ChatCompletionMessageParam",
+    "Model",
+    "OpenAI",
+    "Response",
+    "client",
+    "model",
+]
 
 Response: TypeAlias = ChatCompletion | Stream[ChatCompletionChunk]
 

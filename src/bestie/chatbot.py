@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TypeAlias
+from typing import Literal, TypeAlias, TypedDict, cast
 
 from colorama import Fore, Style, init as colorama_init
 
@@ -9,26 +9,33 @@ from bestie import gpt
 Response: TypeAlias = gpt.Response
 
 
+class Message(TypedDict):
+    role: Literal["system", "user", "assistant"]
+    content: str
+
+
 class Chatbot:
     def __init__(self, model: str) -> None:
         self.model: str = model
-        self.context: list[dict[str, str]] = [{"role": "system", "content": "You are a helpful assistant."}]
+        self.messages: list[Message] = [{"role": "system", "content": "You are a helpful assistant."}]
 
-    def add_user_message(self, message: str) -> None:
-        self.context.append({"role": "user", "content": message})
+    def add_user_message(self, content: str) -> None:
+        self.messages.append({"role": "user", "content": content})
 
     def send_request(self) -> Response:
         return gpt.client.chat.completions.create(
             model=self.model,
-            messages=self.context,
+            messages=cast(list[gpt.ChatCompletionMessageParam], self.messages),
         )
 
     def add_response(self, response: Response) -> None:
         message = response.choices[0].message
-        self.context.append({"role": str(message.role), "content": str(message.content)})
+        assert message.role == "assistant"
+        assert message.content is not None
+        self.messages.append({"role": "assistant", "content": message.content})
 
     def get_last_message(self) -> str:
-        return self.context[-1]["content"]
+        return self.messages[-1]["content"]
 
 
 def run_cli():
@@ -37,10 +44,9 @@ def run_cli():
 
     chatbot = Chatbot(gpt.model.GPT_4O_MINI)
     while True:
-        user_message = input(Fore.BLUE + "User> ")
+        user_message = input(Fore.BLUE + "User> ").strip()
         print(Style.RESET_ALL, end="")
-        user_message = user_message.strip()
-        if len(user_message) == 0:
+        if not user_message:
             continue
         elif user_message == "exit":
             break
