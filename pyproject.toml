@@ -21,6 +21,16 @@ packages = [
 [tool.poetry.scripts]
 chatbot = "src.bestie.chatbot:run_cli"
 
+[tool.poetry.group.dev.dependencies]
+mypy = "^2.1.0"
+types-colorama = "^0.4.15.20260508"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+python_version = "3.13"
+mypy_path = "src"
+strict = true
+explicit_package_bases = true

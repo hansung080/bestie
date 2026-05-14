@@ -1,6 +1,7 @@
 annotated-types==0.7.0
 anyio==4.10.0
--e git+ssh://git@github.com/hansung080/bestie.git@f0bf907e2cce91e15c0e1f6bafbe5c436ae4be9e#egg=bestie
+ast_serialize==0.3.0
+-e git+ssh://git@github.com/hansung080/bestie.git@46d59403ed3e8c91ed8d77160857c0df3c0e2815#egg=bestie
 certifi==2025.8.3
 colorama==0.4.6
 distro==1.9.0
@@ -9,7 +10,11 @@ httpcore==1.0.9
 httpx==0.28.1
 idna==3.10
 jiter==0.10.0
+librt==0.11.0
+mypy==2.1.0
+mypy_extensions==1.1.0
 openai==1.99.9
+pathspec==1.1.1
 pydantic==2.11.7
 pydantic_core==2.33.2
 python-dotenv==1.1.1

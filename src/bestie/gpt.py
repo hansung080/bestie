@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TypeAlias
 
 from openai import OpenAI
-from openai._streaming import Stream
-from openai.types.chat import ChatCompletion, ChatCompletionChunk, ChatCompletionMessageParam
+from openai.types.chat import ChatCompletion, ChatCompletionMessageParam
 
 from bestie.env import OPENAI_API_KEY
 
@@ -18,7 +16,8 @@ __all__ = [
     "model",
 ]
 
-Response: TypeAlias = ChatCompletion | Stream[ChatCompletionChunk]
+# type Response = ChatCompletion | Stream[ChatCompletionChunk]  # openai._streaming.Stream not supported
+type Response = ChatCompletion
 
 
 @dataclass(frozen=True)

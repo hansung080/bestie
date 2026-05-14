@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from typing import Literal, TypeAlias, TypedDict, cast
+from typing import Literal, TypedDict, cast
 
 from colorama import Fore, Style, init as colorama_init
 
 from bestie import gpt
 
-Response: TypeAlias = gpt.Response
+type Response = gpt.Response
 
 
 class Message(TypedDict):
@@ -24,8 +24,8 @@ class Chatbot:
 
     def send_request(self) -> Response:
         return gpt.client.chat.completions.create(
-            model=self.model,
             messages=cast(list[gpt.ChatCompletionMessageParam], self.messages),
+            model=self.model,
         )
 
     def add_response(self, response: Response) -> None:
@@ -38,7 +38,7 @@ class Chatbot:
         return self.messages[-1]["content"]
 
 
-def run_cli():
+def run_cli() -> None:
     colorama_init(autoreset=True)
     print(f"Bestie> How can I help you? (Enter `{Fore.GREEN}exit{Style.RESET_ALL}` to quit chatting)")
 
